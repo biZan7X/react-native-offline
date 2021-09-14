@@ -4,6 +4,7 @@ import {StyleSheet, SafeAreaView} from 'react-native';
 import LandingScreen from './Screens/LandingScreen';
 
 import userApi from './api/user';
+import OfflineNotice from './components/OfflineNotice';
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -14,9 +15,13 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LandingScreen getUser={getUser} users={users} />
-    </SafeAreaView>
+    <>
+      <OfflineNotice />
+
+      <SafeAreaView style={styles.container}>
+        <LandingScreen getUser={getUser} users={users} />
+      </SafeAreaView>
+    </>
   );
 };
 
