@@ -1,17 +1,20 @@
 import apiClient from './client';
 
-const endpoint = '/api';
+const endpoint = '/api/?results=20';
 
 const getUsers = async () => {
   const res = await apiClient.get(endpoint);
   const data = res.data;
-  const user = {
-    name: data.results[0].name.first,
-    email: data.results[0].email,
-    image: data.results[0].picture.medium,
-  };
 
-  return user;
+  const users = await data.results.map(item => {
+    return {
+      name: item.name.first,
+      email: item.email,
+      image: item.picture.medium,
+    };
+  });
+
+  return users;
 };
 
 export default {getUsers};

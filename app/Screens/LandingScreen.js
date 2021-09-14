@@ -3,10 +3,9 @@ import {View, Button, FlatList, StyleSheet} from 'react-native';
 
 import UserListItem from '../components/UserListItem';
 
-const LandingScreen = ({users, getUser}) => {
+const LandingScreen = ({users}) => {
   return (
     <View style={styles.container}>
-      <Button title="Add Users" onPress={() => getUser()} />
       <FlatList
         data={users}
         keyExtractor={item => item.name}
