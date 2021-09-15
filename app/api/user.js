@@ -6,15 +6,17 @@ const getUsers = async () => {
   const res = await apiClient.get(endpoint);
   const data = res.data;
 
-  const users = await data.results.map(item => {
-    return {
-      name: item.name.first,
-      email: item.email,
-      image: item.picture.medium,
-    };
-  });
+  if (data) {
+    const users = await data.results.map(item => {
+      return {
+        name: item.name.first,
+        email: item.email,
+        image: item.picture.medium,
+      };
+    });
 
-  return users;
+    return users;
+  }
 };
 
 export default {getUsers};

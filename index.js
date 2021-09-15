@@ -8,12 +8,15 @@ import {Provider} from 'react-redux';
 
 import App from './app/App';
 import {name as appName} from './app.json';
-import {store} from './app/store';
+import {store, persistor} from './app/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const connectedApp = () => {
   return (
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor} loading={null}>
+        <App />
+      </PersistGate>
     </Provider>
   );
 };
