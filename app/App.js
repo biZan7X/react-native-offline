@@ -1,21 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
+import {connect} from 'react-redux';
 
 import LandingScreen from './Screens/LandingScreen';
 
-import userApi from './api/user';
+import {getUsers} from './actions';
+
 import OfflineNotice from './components/OfflineNotice';
 
-const App = () => {
-  const [users, setUsers] = useState([]);
-
-  const getUser = async () => {
-    const tempUsers = await userApi.getUsers();
-    setUsers(tempUsers);
-  };
-
+const App = ({getUsers, users}) => {
   useEffect(() => {
-    getUser();
+    getUsers();
   }, []);
 
   return (
@@ -33,4 +28,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+const mapStateToProps = ({users}) => ({users});
+
+export default connect(mapStateToProps, {getUsers})(App);

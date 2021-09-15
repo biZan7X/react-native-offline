@@ -4,11 +4,12 @@ import {View, Button, FlatList, StyleSheet} from 'react-native';
 import UserListItem from '../components/UserListItem';
 
 const LandingScreen = ({users}) => {
+  console.log(users);
   return (
     <View style={styles.container}>
       <FlatList
         data={users}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.email}
         renderItem={({item}) => <UserListItem item={item} />}
         style={styles.list}
       />

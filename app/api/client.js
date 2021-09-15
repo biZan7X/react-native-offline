@@ -6,6 +6,10 @@ const apiClient = create({
   baseURL: 'https://randomuser.me',
 });
 
+/*
+
+! caching without redux
+
 const get = apiClient.get;
 
 //^ altering the get()
@@ -20,5 +24,7 @@ apiClient.get = async (url, params, axiosConfig) => {
   const data = await cache.get(url); //* retrieving the data from the cache
   return data ? {ok: true, data} : response;
 };
+
+*/
 
 export default apiClient;
